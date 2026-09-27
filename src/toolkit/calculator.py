@@ -11,7 +11,7 @@ def tokenize(expression: str) -> list:
             i += 1
             continue
 
-        if char in '+-' and (i == 0 or tokens[-1][0] == 'OPERATOR'):
+        if char in '+-' and (not tokens or tokens[-1][0] == 'OPERATOR'):
             start = i
             i += 1
 
@@ -20,15 +20,31 @@ def tokenize(expression: str) -> list:
 
             while i < len(expression) and (expression[i].isdigit() or expression[i] == '.'):
                 i += 1
-            tokens.append(('NUMBER', float(expression[start:i])))
+            
+            num_str = expression[start:i]
+
+            if '..' in num_str:
+                raise CalculatorError("В числе несколько точек подряд")
+            try:
+                tokens.append('NUMBER', float(num_str))
+            except ValueError:
+                raise CalculatorError(f"Недопустимый формат числа: {num_str}")
             continue
 
         if char.isdigit() or char == '.':
             start = i
             while i < len(expression) and (expression[i].isdigit() or expression[i] == '.'):
                 i += 1
-            tokens.append(('NUMBER', float(expression[start:i])))
-            continue
+            
+            num_str = expression[start:i]
+
+            if '..' in num_str:
+                raise CalculatorError("В числе несколько точек подряд")
+            try:
+                tokens.append('NUMBER', float(num_str))
+            except ValueError:
+                raise CalculatorError(f"Недопустимый формат числа: {num_str}")
+            continue  
 
         if char in '+-*/':
             tokens.append(('OPERATOR', char))
