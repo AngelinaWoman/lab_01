@@ -26,7 +26,7 @@ def tokenize(expression: str) -> list:
             if '..' in num_str:
                 raise CalculatorError("В числе несколько точек подряд")
             try:
-                tokens.append('NUMBER', float(num_str))
+                tokens.append(('NUMBER', float(num_str)))
             except ValueError:
                 raise CalculatorError(f"Недопустимый формат числа: {num_str}")
             continue
@@ -41,7 +41,7 @@ def tokenize(expression: str) -> list:
             if '..' in num_str:
                 raise CalculatorError("В числе несколько точек подряд")
             try:
-                tokens.append('NUMBER', float(num_str))
+                tokens.append(('NUMBER', float(num_str)))
             except ValueError:
                 raise CalculatorError(f"Недопустимый формат числа: {num_str}")
             continue  
