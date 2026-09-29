@@ -16,6 +16,7 @@ TEMPERATURE_UNITS = {"c", "f", "k"}
 
 ALL_UNITS = set(LENGTH_TO_BASE) | set(MASS_TO_BASE) | TEMPERATURE_UNITS
 
+
 def temperature_to_base(value: float, unit: str) -> float:
     if unit == "c":
         return value
@@ -24,6 +25,7 @@ def temperature_to_base(value: float, unit: str) -> float:
     elif unit == "k":
         return value - 273.15
 
+
 def temperature_to_final(value: float, unit: str) -> float:
     if unit == "c":
         return value
@@ -31,6 +33,7 @@ def temperature_to_final(value: float, unit: str) -> float:
         return value * 1.8 + 32
     elif unit == "k":
         return value + 273.15
+
 
 def convert(value: float, from_unit: str, to_unit: str) -> float:
     try:
@@ -42,7 +45,7 @@ def convert(value: float, from_unit: str, to_unit: str) -> float:
     to_unit = to_unit.lower()
 
     if from_unit not in ALL_UNITS or to_unit not in ALL_UNITS:
-       raise ConverterError("Неизвестная единица")
+        raise ConverterError("Неизвестная единица")
 
     if from_unit in LENGTH_TO_BASE and to_unit in LENGTH_TO_BASE:
         value_in_base = value * LENGTH_TO_BASE[from_unit]
