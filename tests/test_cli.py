@@ -3,7 +3,13 @@ import sys
 
 
 def run_toolkit(*arguments: str) -> subprocess.CompletedProcess:
-    return subprocess.run([sys.executable, "-m", "toolkit", *arguments], capture_output=True, text=True, timeout=10, check=False)
+    return subprocess.run(
+        [sys.executable, "-m", "toolkit", *arguments],
+        capture_output=True,
+        text=True,
+        timeout=10,
+        check=False,
+    )
 
 
 class TestCli:
