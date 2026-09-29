@@ -24,9 +24,9 @@ class TestCalculator:
         with pytest.raises(CalculatorError):
             calculate("1..2")
 
-    def test_three_dots_error(self):
+    def test_missing_operand_error(self):
         with pytest.raises(CalculatorError):
-            calculate("5...3")
+            calculate("2 +")
 
     def test_invalid_format_error(self):
         with pytest.raises(CalculatorError):
