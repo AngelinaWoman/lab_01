@@ -9,7 +9,7 @@ from toolkit.errors import ToolkitError
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="python -m toolkit",
-        description="CLI набор утилит: калькулятор и конвертер",
+        description="Консольное приложение: калькулятор и конвертер",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
